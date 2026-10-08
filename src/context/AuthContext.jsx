@@ -5,9 +5,8 @@ const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(Boolean(getToken())); // only "checking" if a token exists
+  const [loading, setLoading] = useState(Boolean(getToken())); 
 
-  // On first load / page refresh: ask the API if the stored token is still valid
   useEffect(() => {
     if (!getToken()) return;
     api

@@ -20,7 +20,7 @@ export default function Dashboard() {
   const loadTasks = async () => {
     try {
       const res = await api.list(filter, page);
-      if (res.data.length === 0 && page > 1) return setPage(page - 1); // page emptied -> go back
+      if (res.data.length === 0 && page > 1) return setPage(page - 1); 
       setTasks(res.data);
       setMeta(res.meta);
     } catch (e) {
@@ -69,7 +69,6 @@ export default function Dashboard() {
   return (
     <main className="min-h-screen bg-gray-100 text-gray-800">
       <div className="mx-auto max-w-2xl px-4 py-10">
-        {/* Header */}
         <header className="mb-6 flex items-center justify-between">
           <h1 className="text-3xl font-bold">Task Manager</h1>
           <div className="flex items-center gap-3 text-sm">
@@ -89,7 +88,6 @@ export default function Dashboard() {
           </div>
         )}
 
-        {/* Add task */}
         <form
           onSubmit={addTask}
           className="mb-6 space-y-3 rounded-xl bg-white p-4 shadow-sm"
@@ -114,7 +112,6 @@ export default function Dashboard() {
           </button>
         </form>
 
-        {/* Filter */}
         <div className="mb-4 flex gap-2">
           {FILTERS.map((f) => (
             <button
@@ -131,7 +128,7 @@ export default function Dashboard() {
           ))}
         </div>
 
-        {/* List */}
+
         {loading ? (
           <p className="text-center text-gray-500">Loading tasks...</p>
         ) : tasks.length === 0 ? (
@@ -191,7 +188,7 @@ export default function Dashboard() {
           </ul>
         )}
 
-        {/* Pagination */}
+        
         {meta.totalPages > 1 && (
           <div className="mt-5 flex items-center justify-center gap-4 text-sm">
             <button

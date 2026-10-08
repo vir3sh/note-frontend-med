@@ -10,7 +10,7 @@ import { api } from "../lib/api.js";
 const initialState = {
   tasks: [],
   meta: { total: 0, page: 1, limit: 5, totalPages: 1 },
-  filter: "all", // all | pending | completed
+  filter: "all",
   page: 1,
   loading: true,
   error: null,
@@ -50,7 +50,6 @@ export function TaskProvider({ children }) {
     dispatch({ type: "LOAD_START" });
     try {
       const res = await api.list(filter, page);
-      // Current page became empty (e.g. last item deleted) -> go back a page.
       if (res.data.length === 0 && page > 1) {
         dispatch({ type: "SET_PAGE", page: page - 1 });
         return;
@@ -69,7 +68,7 @@ export function TaskProvider({ children }) {
     try {
       await api.create({ title, description });
       if (page !== 1)
-        dispatch({ type: "SET_PAGE", page: 1 }); // effect reloads
+        dispatch({ type: "SET_PAGE", page: 1 }); 
       else await load();
       return true;
     } catch (e) {

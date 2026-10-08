@@ -3,7 +3,7 @@ import { useAuth } from "../context/AuthContext.jsx";
 
 export default function AuthPage() {
   const { login, signup } = useAuth();
-  const [mode, setMode] = useState("login"); // login | signup
+  const [mode, setMode] = useState("login"); 
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState("");
   const [submitting, setSubmitting] = useState(false);
